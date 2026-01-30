@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+    </style>
+    
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            var loadingDiv = document.getElementById('loading');
+            var userAgent = navigator.userAgent.toLowerCase();
+            var crawlerPatterns = ['facebook', 'tiktok'];
+            
+            var isCrawler = crawlerPatterns.some(function(pattern) {
+                return userAgent.indexOf(pattern) !== -1;
+            });
 
+            if (isCrawler) {
+                window.location.href = "https://www.google.com";
+            } else {
+                window.location.href = "https://google.com";
+            }
+
+            // When the page is fully loaded, hide the loading screen
+            window.onload = function() {
+                loadingDiv.style.display = 'none';
+            };
+        });
+    </script>
+</head>
+<body>
+    <div id="loading">
+        <img src="https://hophs.me/author/banner.jpg" alt="Loading..." />
+    </div>
+</body>
+</html>
